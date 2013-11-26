@@ -3,3 +3,4 @@
 	name = Hans Meyer
 [alias]
 	today = log --graph --all --since=\"yesterday.midnight\" --author=\"$(git config user.name)\" --pretty
+    co = checkout
