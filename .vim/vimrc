@@ -1,0 +1,26 @@
+syntax on           "Always enable syntax highlighting
+set number          "display line numbers
+
+"Indention and tabs/space autoformatting
+set ai              "autoindent
+set si              "smartindent
+set tabstop=4       "tabsize
+set shiftwidth=4    "indentsize
+set expandtab       "tabs to space
+set softtabstop=4   "treat 4 spaces like a tab
+
+"Change and scrolling behavior
+set autoread        "reload on change from outside
+set so=5            "keep lines above/below the cursor
+
+autocmd InsertLeave * set nocursorline
+autocmd InsertEnter * set cursorline
+
+colorscheme desert
+
+"shortcuts as familiar so far
+map <C-Z>:undo<CR>
+
+"Commands for clang formatting
+map <C-K>:!/usr/bin/clang-format -i<CR>
+imap <C-K> <ESC>:!/usr/bin/clang-format -i<CR>i
