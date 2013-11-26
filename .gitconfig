@@ -8,3 +8,9 @@
 [alias]
 	today = log --graph --all --since=\"yesterday.midnight\" --author=\"$(git config user.name)\" --pretty
     co = checkout
+
+[help]
+	autocorrect = true
+
+[color]
+	branch = auto
