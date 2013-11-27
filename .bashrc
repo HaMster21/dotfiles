@@ -112,3 +112,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# for ssh connections, assume that the personal identity should be used
+# autoload it with the bash
+if ! ssh-add -l; then ssh-add
+fi
