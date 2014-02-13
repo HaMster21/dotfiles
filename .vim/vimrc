@@ -17,10 +17,3 @@ autocmd InsertLeave * set nocursorline
 autocmd InsertEnter * set cursorline
 
 colorscheme desert
-
-"shortcuts as familiar so far
-map <C-Z>:undo<CR>
-
-"Commands for clang formatting
-map <C-K>:!/usr/bin/clang-format -i<CR>
-imap <C-K> <ESC>:!/usr/bin/clang-format -i<CR>i
