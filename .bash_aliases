@@ -8,7 +8,7 @@ alias ga='git add'
 alias v='vim -N -O'
 
 #debian
-alias update='sudo apt-get update && sudo apt-get upgrade'
+alias update='sudo apt-get -q update && sudo apt-get -y upgrade'
 alias install='sudo apt-get install'
 alias remove='sudo apt-get remove'
 

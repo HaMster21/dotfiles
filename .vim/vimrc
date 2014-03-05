@@ -1,3 +1,6 @@
+set nocompatible
+filetype plugin on
+
 syntax on           "Always enable syntax highlighting
 set number          "display line numbers
 
@@ -13,7 +16,8 @@ set softtabstop=4   "treat 4 spaces like a tab
 set autoread        "reload on change from outside
 set so=5            "keep lines above/below the cursor
 
-autocmd InsertLeave * set nocursorline
-autocmd InsertEnter * set cursorline
+set hls             "highlight matching search patterns
 
 colorscheme desert
+
+map Y y$            "yank to the end of the current line
