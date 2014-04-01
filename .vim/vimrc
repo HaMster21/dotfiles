@@ -3,6 +3,7 @@ filetype plugin on
 
 syntax on           "Always enable syntax highlighting
 set number          "display line numbers
+set laststatus=2    "Always display a statusline for windows
 
 "Indention and tabs/space autoformatting
 set ai              "autoindent
