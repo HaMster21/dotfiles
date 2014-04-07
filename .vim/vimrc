@@ -19,6 +19,10 @@ set so=5            "keep lines above/below the cursor
 
 set hls             "highlight matching search patterns
 
+"Colors
 colorscheme desert
+"Highlight characters after column 80
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
 
 map Y y$            "yank to the end of the current line
