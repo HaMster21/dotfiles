@@ -59,6 +59,8 @@ bindkey -v           # using vi keymap
   # files
   alias -s d=vim
   alias -s xml=vim
+  alias -s zsh=vim
+  alias -s sh=vim
 
 # --- automatic extension ---
   source ~/Entwicklung/dotfiles/zsh/antigen.zsh

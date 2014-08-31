@@ -23,6 +23,6 @@ set hls             "highlight matching search patterns
 colorscheme desert
 "Highlight characters after column 80
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+match OverLength /\%101v.\+/ 
 
 map Y y$            "yank to the end of the current line
