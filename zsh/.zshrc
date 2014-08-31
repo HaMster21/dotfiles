@@ -61,10 +61,24 @@ bindkey -v           # using vi keymap
   alias -s xml=vim
 
 # --- automatic extension ---
-source ~/Entwicklung/dotfiles/zsh/antigen.zsh
+  source ~/Entwicklung/dotfiles/zsh/antigen.zsh
 
-antigen bundle git
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen theme HaMster21/dotfiles zsh/topdesk
-antigen apply
+  antigen bundle git
+  antigen bundle git-extras
+  antigen bundle git-prompt
+  antigen bundle git-flow
+  antigen bundle github
+
+  antigen bundle docker
+  antigen bundle debian
+  antigen bundle gpg-agent
+  antigen bundle sudo
+  antigen bundle tmux
+  antigen bundle vundle
+
+  antigen bundle zsh-users/zsh-syntax-highlighting
+  
+  antigen theme HaMster21/dotfiles zsh/topdesk
+  
+  antigen apply
 
