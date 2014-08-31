@@ -65,7 +65,6 @@ source ~/Entwicklung/dotfiles/zsh/antigen.zsh
 
 antigen bundle git
 antigen bundle zsh-users/zsh-syntax-highlighting
-#antigen theme HaMster21/dotfiles zsh/topdesk
-source ~/Entwicklung/dotfiles/zsh/topdesk.zsh-theme
+antigen theme HaMster21/dotfiles zsh/topdesk
 antigen apply
 
