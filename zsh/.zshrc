@@ -67,7 +67,7 @@ bindkey -v           # using vi keymap
 
   antigen bundle git
   antigen bundle git-extras
-  antigen bundle git-prompt
+  #antigen bundle git-prompt
   antigen bundle git-flow
   antigen bundle github
 
