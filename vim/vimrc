@@ -1,5 +1,14 @@
 set nocompatible
-filetype plugin on
+filetype off
+
+set rtp +=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'SirVer/ultisnips'
+
+call vundle#end()
+filetype plugin indent on
 
 syntax on           "Always enable syntax highlighting
 set number          "display line numbers
