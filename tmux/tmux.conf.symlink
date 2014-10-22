@@ -1,0 +1,15 @@
+set -g utf8
+set -g status-utf8 on
+set-window-option -g utf8 on
+
+set -g default-shell /usr/bin/zsh
+
+set -g mode-keys vi
+set -g status-keys vi
+
+set -g status-bg brightblue
+set -g status-fg white
+set -g status-position top
+set -g status-justify centre
+
+set -g status-right "@#T ⌚ %H:%M %d.%b.%y"
