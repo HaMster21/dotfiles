@@ -1,6 +1,5 @@
-autoload colors && colors
-# cheers, @ehrenmurdick
-# http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
+autoload -U promptinit && promptinit
+autoload -U colors && colors
 
 if (( $+commands[git] ))
 then
@@ -10,8 +9,28 @@ else
 fi
 
 precmd() {
-  export PROMPT=$'$(directory_name) $(need_push)\n$(prompt_symbol) ' 
+  export PROMPT=$'$(current_user)@$(current_machine)$(directory_name) $(need_push)\n$(prompt_symbol) ' 
   export RPROMPT="%{$fg_bold[cyan]%}$(git_branch) $(git_quickinfo)%{$reset_color%}"
+}
+
+current_user() {
+  if [[ -n $SSH_CONNECTION ]]; then
+    #react to running ssh session
+  else
+    if [[ $(id -u) -eq 0 ]]; then
+      echo "%{$fg[brightred]%}root%{$reset_color%}"
+    else
+      echo $(whoami)
+    fi
+  fi
+}
+
+current_machine() {
+  if [[ -n $SSH_CONNECTION ]]; then
+    #react to running ssh session
+  else
+    echo "%m"
+  fi
 }
 
 git_branch() {
@@ -50,7 +69,7 @@ git_quickinfo() {
 }
 
 directory_name() {
-  echo "%{$fg_bold[cyan]%}%n@%M:%3~%{$reset_color%}"
+  echo ":%3~"
 }
 
 prompt_symbol() {
