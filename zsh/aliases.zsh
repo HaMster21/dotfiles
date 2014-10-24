@@ -1,7 +1,5 @@
-alias reload!='. ~/.zshrc'
-
 # vim
-alias v="vim -N"
+alias v="vim -O"
 
 # debian
 alias update="sudo apt-get update && sudo apt-get upgrade"
