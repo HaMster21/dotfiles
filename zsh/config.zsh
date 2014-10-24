@@ -64,6 +64,10 @@ setopt noshwordsplit
 # don't error out when unset parameters are used
 setopt unset
 
+# use colors like everyone else for completions
+zmodload -i zsh/complist
+zstyle ':completion:*' list_colors ${(s.:.)LS_COLORS}
+
 #------------------------------------------------------------------------------
 
 HISTFILE=~/.zsh_history
