@@ -10,7 +10,7 @@ fi
 
 precmd() {
   export PROMPT=$'$(current_user)@$(current_machine)$(directory_name) $(need_push)\n$(prompt_symbol) ' 
-  export RPROMPT="%{$fg_bold[cyan]%}$(git_branch) $(git_quickinfo)%{$reset_color%}"
+  export RPROMPT="$(git_quickinfo)"
 }
 
 current_user() {
