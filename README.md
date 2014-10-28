@@ -1,17 +1,15 @@
-# holman does dotfiles
+# HaMster's Terminal empire
 
 ## dotfiles
 
-Your dotfiles are how you personalize your system. These are mine.
+I was running into the dotfiles of [@holman](https://github.com/holman) while skimming through his
+series ["How GitHub works"](http://zachholman.com/talk/how-github-no-longer-works/). They follow a
+topic approach, so everything you need gets topic folders which contain files relevant for the
+topic. Easy as hell. And there's just a need little script to get you started, ./script/bootstrap.
+This script makes the assumption that everything ending on zsh gets sourced to zsh, and files with
+.symlink on their tail get symlinked to ~.
 
-I was a little tired of having long alias files and everything strewn about
-(which is extremely common on other dotfiles projects, too). That led to this
-project being much more topic-centric. I realized I could split a lot of things
-up into the main areas I used (Ruby, git, system libraries, and so on), so I
-structured the project accordingly.
-
-If you're interested in the philosophy behind why projects like these are
-awesome, you might want to [read my post on the
+If you're interested in the philosophy behind this repo, you might want to [read the post on the
 subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
 ## install
