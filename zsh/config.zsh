@@ -75,8 +75,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 export EDITOR="vim"
-export LSCOLORS="exfxcxdxbxegedabagacad"
-export CLICOLOR=true
+#export LSCOLORS="exfxcxdxbxegedabagacad"
+#export CLICOLOR=true
 
 fpath=($ZSH/functions $fpath)
 

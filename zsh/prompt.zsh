@@ -9,8 +9,9 @@ else
 fi
 
 precmd() {
-  export PROMPT=$'$(current_user)@$(current_machine)$(directory_name) $(need_push)\n$(prompt_symbol) ' 
-  export RPROMPT="$(git_quickinfo)"
+  export PROMPT="$(current_user)@$(current_machine)$(directory_name)
+$(prompt_symbol) "
+  export RPROMPT="$(git_quickinfo)$(last_exitcode)"
 }
 
 current_user() {
@@ -33,47 +34,23 @@ current_machine() {
   fi
 }
 
-git_branch() {
-  echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
-}
-
-git_dirty() {
-  if $(! $git status -s &> /dev/null)
-  then
-    echo ""
-  else
-    if [[ $($git status --porcelain) == "" ]]
-    then
-      echo "on %{$fg_bold[green]%}$(git_prompt_info)%{$reset_color%}"
-    else
-      echo "on %{$fg_bold[red]%}$(git_prompt_info)%{$reset_color%}"
-    fi
-  fi
-}
-
-unpushed () {
-  $git cherry -v @{upstream} 2>/dev/null
-}
-
-need_push () {
-  if [[ $(unpushed) == "" ]]
-  then
-    echo " "
-  else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
-  fi
-}
-
-git_quickinfo() {
-  echo ""
-}
-
 directory_name() {
   echo ":%3~"
 }
 
 prompt_symbol() {
-  echo "%{%F{green}%}ᛄ%{$reset_color%}"
+  echo "%{$reset_color%}%{%F{brightyellow}%}ᛄ%{$reset_color%}"
 }
 
+git_quickinfo() {
+  echo "$(git_branch)"
+}
+
+last_exitcode() {
+  echo "%(?.. %{%F{brightred}%}%?⏎%{$reset_color%})"
+}
+
+git_branch() {
+  echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+}
 

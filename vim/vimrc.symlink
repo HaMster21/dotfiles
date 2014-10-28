@@ -1,4 +1,5 @@
-syntax on
+source $ZSH/vim/config.vim
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+
