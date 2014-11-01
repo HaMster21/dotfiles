@@ -1,5 +1,8 @@
 set nocompatible
+syntax on
+colorscheme desert
 
+set laststatus=2
 set number          " Show line numbers
 set linebreak       " Break lines at word (requires Wrap lines)
 set showbreak=->>   " Wrap-broken line prefix
@@ -26,3 +29,8 @@ set ruler           " Show row and column ruler information
  
 set undolevels=1000 " Number of undo levels
 set backspace=indent,eol,start  " Backspace behaviour
+
+"Highlight characters after column 100
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%101v.\+/ 
+
