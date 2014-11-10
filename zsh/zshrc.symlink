@@ -1,40 +1,46 @@
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
+export DOTFILES=$HOME/.dotfiles
 
-# your project folder that we can `c [tab]` to
-export PROJECTS=~/Code
+autoload -Uz compinit && compinit
+autoload -Uz promptinit && promptinit
+autoload -Uz colors && colors
 
-# use .localrc for SUPER SECRET CRAP that you don't
-# want in your public, versioned repo.
+# use .localrc for things you don't want in your public, versioned repo.
 if [[ -a ~/.localrc ]]
 then
   source ~/.localrc
 fi
 
+for file in $DOTFILES/zsh/*.zsh; do
+    source $file
+done
+
+#append our functions to fpath, where zsh searches for function names
+fpath=($DOTFILES/functions $fpath)
+
 # all of our zsh files
-typeset -U config_files
-config_files=($ZSH/**/*.zsh)
+#typeset -U config_files
+#config_files=($DOTFILES/**/*.zsh)
+#config_files=${config_files:#*/zsh/*.zsh}
 
 # load the path files
-for file in ${(M)config_files:#*/path.zsh}
-do
+for file in $DOTFILES/**/(path|aliases).zsh; do
   source $file
 done
+
+
 
 # load everything but the path and completion files
-for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
-do
-  source $file
-done
+#for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+#do
+#  source $file
+#done
 
-# initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
-compinit
 
 # load every completion after autocomplete loads
-for file in ${(M)config_files:#*/completion.zsh}
-do
-  source $file
-done
+#for file in ${(M)config_files:#*/completion.zsh}
+#do
+#  source $file
+#done
 
-unset config_files
+#unset config_files
