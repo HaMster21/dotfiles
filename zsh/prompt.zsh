@@ -37,7 +37,7 @@ last_exitcode() {
 }
 
 git_quickinfo() {
-    git status &> /dev/null
+    git status &> /dev/null;
     if [[ !$ -eq 0 ]]; then
         echo $(git_branch) $(git_stashcount)
     else
@@ -53,8 +53,12 @@ git_stashcount() {
   local count
   count=$(git stash list 2>/dev/null | wc -l)
   if [[ $count -gt 0 ]]; then
-      echo $count
+      echo "(⛁ $count)"
   else
       echo ''
   fi
+}
+
+git_remote_status() {
+    echo ⇅
 }
