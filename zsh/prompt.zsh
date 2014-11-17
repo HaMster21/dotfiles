@@ -39,7 +39,7 @@ last_exitcode() {
 git_quickinfo() {
     git status &> /dev/null;
     if [[ !$ -eq 0 ]]; then
-        echo $(git_branch) $(git_stashcount)
+        echo $(git_branch) $(git_remote_status) $(git_stashcount)
     else
         echo ''
     fi
@@ -60,9 +60,9 @@ git_stashcount() {
 }
 
 git_remote_status() {
-    local commit-diff
-    commit-diff=$(git rev-list --left-right --boundary @{u}...)
-
-    echo $($commit-diff | grep < | wc -l)⇅$($commit-diff | grep > | wc -l)
+    local rstatus
+    rstatus=$(git rev-list --left-right --boundary @{u}... 2>/dev/null)
+    echo $rstatus
+    #echo $($rstatus | grep < | wc -l)⇅$($rstatus | grep > | wc -l)
 }
 
