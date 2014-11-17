@@ -60,5 +60,9 @@ git_stashcount() {
 }
 
 git_remote_status() {
-    echo ⇅
+    local commit-diff
+    commit-diff=$(git rev-list --left-right --boundary @{u}...)
+
+    echo $($commit-diff | grep < | wc -l)⇅$($commit-diff | grep > | wc -l)
 }
+
