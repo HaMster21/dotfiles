@@ -1,0 +1,14 @@
+# Usage: mux <environment>
+# Description:  creates environments defined in *.mux scriptfiles in the dotfiles/tmux folder
+mux () {
+    if [[ -n $1 ]]; then
+        if [[ -f $DOTFILES/tmux/$1.mux ]]; then
+            $DOTFILES/tmux/$1.mux
+        else
+            echo "'$1' is not specified as a mux file"
+        fi
+    else
+        echo "usage: mux <environment> with <environment> being the name of a *.mux file (without extension) in $DOTFILES/tmux"
+    fi
+}
+
