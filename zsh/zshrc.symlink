@@ -28,7 +28,9 @@ for file in $DOTFILES/**/(path|aliases).zsh; do
   source $file
 done
 
-
+if [[ "$TERM" == "xterm" ]]; then
+    export TERM=xterm-256color
+fi
 
 # load everything but the path and completion files
 #for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
