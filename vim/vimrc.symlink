@@ -1,5 +1,10 @@
 source $DOTFILES/vim/config.vim
 
-" Wrap gitcommit file types at the appropriate length
+" Detect filetypes
 filetype indent plugin on
 
+set listchars=tab:▸\ ,eol:¬
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
+" Show whitespace
+set list 
