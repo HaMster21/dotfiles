@@ -26,6 +26,7 @@ set shiftwidth=4    " Number of auto-indent spaces
 set smartindent     " Enable smart-indent
 set smarttab        " Enable smart-tabs
 
+set autoread        " Autoload changes to file from other views/programs
 
 set ruler           " Show row and column ruler information
 
