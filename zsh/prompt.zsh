@@ -1,7 +1,6 @@
 precmd() {
     export RPROMPT="$(git_quickinfo)$(last_exitcode)"
     export PROMPT="$(current_user)@$(current_machine)$(directory_name)$(prompt_symbol) "
-
 }
 
 current_user() {
@@ -40,9 +39,12 @@ last_exitcode() {
 }
 
 has_git() {
-    if [[ -z $(git rev-parse --git-dir 2> /dev/null) ]]; then
+    if [[ -n $(git rev-parse --git-dir 2> /dev/null) ]]; then
         return false
-    else
+#    elif [[ -z $(git rev-parse --work-dir) 2> /dev/null) ]]; then
+#        return false
+#    elif [[ -z $(git revparse 
+    else 
         return true
     fi
 }
