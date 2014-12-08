@@ -1,6 +1,7 @@
 set nocompatible
 syntax on
 colorscheme desert
+filetype indent plugin on
 
 set laststatus=2
 set number          " Show line numbers
@@ -37,3 +38,8 @@ set backspace=indent,eol,start  " Backspace behaviour
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%101v.\+/ 
 
+set listchars=tab:▸\ ,eol:¬
+highlight NonText guifg=#191919
+highlight SpecialKey guifg=#191919
+" Show whitespace
+set list 
