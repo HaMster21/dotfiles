@@ -1,5 +1,8 @@
+" Wrap gitcommit file types at the appropriate length
+filetype indent plugin on
 source $DOTFILES/vim/config.vim
 source $DOTFILES/vim/d.vim
+source $DOTFILES/vim/plugins.vim
 
 function! Preserve(command)
     " Preparation: save last search, and cursor position.

@@ -45,4 +45,7 @@ fi
 #  source $file
 #done
 
-#unset config_files
+unset config_files
+if [[ -z $TMUX ]]; then 
+    tmux new -A -s default
+fi
