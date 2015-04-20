@@ -51,7 +51,7 @@ has_git() {
 }
 
 git_branch() {
-  echo "$(git symbolic-ref HEAD 2>/dev/null | awk -F/ {"print $NF"})"
+  echo "$(git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})"
 }
 
 git_stashcount() {
