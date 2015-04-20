@@ -24,7 +24,7 @@ current_machine() {
 }
 
 directory_name() {
-    echo "%{$fg[magenta]%}:~%{$reset_color%}"
+    echo "%{$fg[magenta]%}:%~%{$reset_color%}"
     if [[ $(has_git) == true ]]; then
         echo "%{$fg[green]%}•%{$reset_color%}"
     fi
