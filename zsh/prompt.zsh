@@ -10,7 +10,7 @@ current_user() {
     if [[ $(id -u) -eq 0 ]]; then
       echo "%{$fg[brightred]%}root%{$reset_color%}"
     else
-      echo "$(whoami)"
+      echo "%{$fg[magenta]%}$(whoami)%{$reset_color%}"
     fi
   fi
 }
@@ -26,7 +26,7 @@ current_machine() {
 directory_name() {
     echo "%{$fg[magenta]%}:~%{$reset_color%}"
     if [[ $(has_git) == true ]]; then
-        echo %{$fg[green]%}•%{$reset_color%}
+        echo "%{$fg[green]%}•%{$reset_color%}"
     fi
 }
 
@@ -34,8 +34,24 @@ prompt_symbol() {
   echo "\n%{$fg[green]%}ᛄ%{$reset_color%}"
 }
 
+git_quickinfo() {
+    echo "$(git_branch)"
+}
+
+last_exitcode() {
+    echo "%(?.. %{%F{brightred}%?↲%{$reset_color%}"
+}
+
+has_git() {
+    if [[ -n $(git rev-parse --git-dir 2> /dev/null) ]]; then
+        return false
+    else
+        return true
+    fi
+}
+
 git_branch() {
-  echo $(git symbolic-ref HEAD 2>/dev/null | awk -F/ {"print $NF"})
+  echo "$(git symbolic-ref HEAD 2>/dev/null | awk -F/ {"print $NF"})"
 }
 
 git_stashcount() {
