@@ -1,17 +1,6 @@
-autoload -U promptinit && promptinit
-autoload -U colors && colors
-
-if (( $+commands[git] ))
-then
-  git="$commands[git]"
-else
-  git="/usr/bin/git"
-fi
-
 precmd() {
-  export PROMPT="$(current_user)@$(current_machine)$(directory_name)
-$(prompt_symbol) "
-  export RPROMPT="$(git_quickinfo)$(last_exitcode)"
+    export RPROMPT="$(git_quickinfo)$(last_exitcode)"
+    export PROMPT="$(current_user)@$(current_machine)$(directory_name)$(prompt_symbol) "
 }
 
 current_user() {
@@ -21,7 +10,7 @@ current_user() {
     if [[ $(id -u) -eq 0 ]]; then
       echo "%{$fg[brightred]%}root%{$reset_color%}"
     else
-      echo $(whoami)
+      echo "$(whoami)"
     fi
   fi
 }
@@ -30,27 +19,39 @@ current_machine() {
   if [[ -n $SSH_CONNECTION ]]; then
     #react to running ssh session
   else
-    echo "%m"
+    echo "%{$fg[green]%}%m%{$reset_color%}"
   fi
 }
 
 directory_name() {
-  echo ":%3~"
+    echo "%{$fg[magenta]%}:~%{$reset_color%}"
+    if [[ $(has_git) == true ]]; then
+        echo %{$fg[green]%}•%{$reset_color%}
+    fi
 }
 
 prompt_symbol() {
-  echo "%{$reset_color%}%{%F{brightyellow}%}ᛄ%{$reset_color%}"
-}
-
-git_quickinfo() {
-  echo "$(git_branch)"
-}
-
-last_exitcode() {
-  echo "%(?.. %{%F{brightred}%}%?⏎%{$reset_color%})"
+  echo "\n%{$fg[green]%}ᛄ%{$reset_color%}"
 }
 
 git_branch() {
-  echo $($git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
+  echo $(git symbolic-ref HEAD 2>/dev/null | awk -F/ {"print $NF"})
+}
+
+git_stashcount() {
+  local count
+  count=$(git stash list 2>/dev/null | wc -l)
+  if [[ $count -gt 0 ]]; then
+      echo "(⛁ $count)"
+  else
+      echo ""
+  fi
+}
+
+git_remote_status() {
+    local rstatus
+    rstatus=$(git rev-list --count --left-right --boundary @{u}... 2>/dev/null)
+    echo $rstatus
+    #echo $($rstatus | grep < | wc -l)⇅$($rstatus | grep > | wc -l)
 }
 

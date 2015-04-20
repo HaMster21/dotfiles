@@ -1,110 +1,59 @@
-# set some important options (as early as possible)
+###
+# Find a reference for options at http://zsh.sourceforge.net/Doc/Release/Options.html
+###
 
-# append history list to the history file; this is the default but we make sure
-# because it's required for share_history.
-setopt append_history
+### Changing Directories
+setopt auto_cd
+setopt auto_push_d
+setopt cdable_vars
+setopt chase_links
+setopt push_d_ignore_dups
 
-# import new commands from the history file also in other zsh-session
+### Completion
+setopt complete_in_word
+setopt complete_aliases
+
+### Expansion an Globbing
+setopt extended_glob
+setopt mark_dirs
+setopt warn_create_global
+
+### History
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_lex_words
+setopt hist_no_functions
+setopt hist_no_store
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
 setopt share_history
 
-# save each command's beginning timestamp and the duration to the history file
-setopt extended_history
+### Initialisation
 
-# If a new command line being added to the history list duplicates an older
-# one, the older command is removed from the list
-setopt histignorealldups
+### Input/Output
 
-# remove command lines from the history list when the first character on the
-# line is a space
-setopt histignorespace
-
-# if a command is issued that can't be executed as a normal command, and the
-# command is the name of a directory, perform the cd command to that directory.
-setopt auto_cd
-
-# in order to use #, ~ and ^ for filename generation grep word
-# *~(*.gz|*.bz|*.bz2|*.zip|*.Z) -> searches for word not in compressed files
-# don't forget to quote '^', '~' and '#'!
-setopt extended_glob
-
-# display PID when suspending processes as well
-setopt longlistjobs
-
-# try to avoid the 'zsh: no matches found...'
-setopt nonomatch
-
-# report the status of backgrounds jobs immediately
-setopt notify
-
-# whenever a command completion is attempted, make sure the entire command path
-# is hashed first.
-setopt hash_list_all
-
-# not just at the end
-setopt completeinword
-
-# Don't send SIGHUP to background processes when the shell exits.
+### Job Control
+setopt long_list_jobs
 setopt nohup
 
-# make cd push the old directory onto the directory stack.
-setopt auto_pushd
+### Prompting
+setopt prompt_subst
 
-# avoid "beep"ing
-setopt nobeep
+### Scripts and Functions
+setopt local_options
+setopt local_traps
+setopt pipe_fail
 
-# don't push the same dir twice.
-setopt pushd_ignore_dups
+### Shell Emulation
 
-# * shouldn't match dotfiles. ever.
-setopt noglobdots
+### Shell State
 
-# use zsh style word splitting
-setopt noshwordsplit
+### Zle
+setopt no_beep
 
-# don't error out when unset parameters are used
-setopt unset
-
-# use colors like everyone else for completions
 zmodload -i zsh/complist
 zstyle ':completion:*' list_colors ${(s.:.)LS_COLORS}
 
-#------------------------------------------------------------------------------
-
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-
-export EDITOR="vim"
-#export LSCOLORS="exfxcxdxbxegedabagacad"
-#export CLICOLOR=true
-
-fpath=($ZSH/functions $fpath)
-
-autoload -U $ZSH/functions/*(:t)
-
-setopt NO_BG_NICE # don't nice background tasks
-setopt NO_HUP
-setopt NO_LIST_BEEP
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
-setopt HIST_VERIFY
-setopt PROMPT_SUBST
-setopt CORRECT
-setopt COMPLETE_IN_WORD
-setopt IGNORE_EOF
-
-setopt HIST_REDUCE_BLANKS
-
-# don't expand aliases _before_ completion has finished
-#   like: git comm-[tab]
-setopt complete_aliases
+autoload -U $DOTFILES/functions/*(:t)
 
 zle -N newtab
-
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char

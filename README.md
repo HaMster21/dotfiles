@@ -5,7 +5,7 @@
 I was running into the dotfiles of [@holman](https://github.com/holman) while skimming through his
 series ["How GitHub works"](http://zachholman.com/talk/how-github-no-longer-works/). They follow a
 topic approach, so everything you need gets topic folders which contain files relevant for the
-topic. Easy as hell. And there's just a neat little script to get you started, ./script/bootstrap.
+topic. Easy as hell. And you just need one little script to get started, ./script/bootstrap.
 This script makes the assumption that everything ending on zsh gets sourced to zsh, and files with
 .symlink on their tail get symlinked to ~.
 
