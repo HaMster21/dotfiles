@@ -37,4 +37,13 @@ do
   source $file
 done
 
+<<<<<<< Updated upstream
 unset config_files
+=======
+if [[ -z $TMUX ]]; then 
+    tmux new -A -s default
+fi
+
+# added by travis gem
+[ -f /home/hamster/.travis/travis.sh ] && source /home/hamster/.travis/travis.sh
+>>>>>>> Stashed changes

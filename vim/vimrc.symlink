@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream
 source $ZSH/vim/config.vim
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+=======
+source $DOTFILES/vim/config.vim
+source $DOTFILES/vim/d.vim
+source $DOTFILES/vim/plugins.vim
+>>>>>>> Stashed changes
 
