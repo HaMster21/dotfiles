@@ -24,10 +24,14 @@ current_machine() {
 }
 
 directory_name() {
-    echo "%{$fg[magenta]%}:%~%{$reset_color%}"
+    local dir
+    dir="%{$fg[magenta]%}:%~%{$reset_color%}"
     if [[ $(has_git) == true ]]; then
-        echo "%{$fg[green]%}•%{$reset_color%}"
+        dir="$dir%{$fg[green]%}•%{$reset_color%}"
+    else
+        dir="$dir%{$fg[red]%}•%{$reset_color%}"
     fi
+    echo "$dir"
 }
 
 prompt_symbol() {
@@ -39,11 +43,11 @@ git_quickinfo() {
 }
 
 last_exitcode() {
-    echo "%(?.. %{%F{brightred}%?↲%{$reset_color%}"
+    echo " %(?.. %{%F{brightred}%?↲%{$reset_color%})"
 }
 
 has_git() {
-    if [[ -n $(git rev-parse --git-dir 2> /dev/null) ]]; then
+    if [[ -n $(git_branch) ]]; then
         return false
     else
         return true
@@ -51,7 +55,10 @@ has_git() {
 }
 
 git_branch() {
-  echo "$(git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})"
+    local ref
+    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return 0
+    echo "${ref#/refs/heads/}"
 }
 
 git_stashcount() {
@@ -67,7 +74,7 @@ git_stashcount() {
 git_remote_status() {
     local rstatus
     rstatus=$(git rev-list --count --left-right --boundary @{u}... 2>/dev/null)
-    echo $rstatus
+    echo "$rstatus"
     #echo $($rstatus | grep < | wc -l)⇅$($rstatus | grep > | wc -l)
 }
 
