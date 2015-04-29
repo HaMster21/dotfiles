@@ -24,14 +24,7 @@ current_machine() {
 }
 
 directory_name() {
-    local dir
-    dir="%{$fg[magenta]%}:%~%{$reset_color%}"
-    if [[ $(has_git) == true ]]; then
-        dir="$dir%{$fg[green]%}•%{$reset_color%}"
-    else
-        dir="$dir%{$fg[red]%}•%{$reset_color%}"
-    fi
-    echo "$dir"
+    echo "%{$fg[magenta]%}:%~%{$reset_color%}"
 }
 
 prompt_symbol() {
@@ -55,8 +48,7 @@ has_git() {
 }
 
 git_branch() {
-    local ref=''
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || return 0
+    local ref=$(command git symbolic-ref HEAD 2> /dev/null) || return 0
     echo "${ref#refs/heads/}"
 }
 
